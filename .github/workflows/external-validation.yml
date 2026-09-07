@@ -221,19 +221,21 @@ jobs:
           python -m pip install .
       - name: Fetch official ASySD files from OSF
         run: metaevidence fetch-asysd external/asysd
+      - name: Normalize ASySD text encoding without altering raw source files
+        run: python benchmarks/normalize_asysd_encoding.py external/asysd external/asysd_utf8
       - name: Run development + calibration roles
         if: ${{ inputs.benchmark == 'asysd-development-calibration' }}
         run: |
           metaevidence validate-asysd \
             benchmarks/external_benchmark_manifest.json \
-            external/asysd results/asysd \
+            external/asysd_utf8 results/asysd \
             --role development --role calibration
       - name: Run explicitly unlocked held-out roles
         if: ${{ inputs.benchmark == 'asysd-held-out' && inputs.confirm_held_out }}
         run: |
           metaevidence validate-asysd \
             benchmarks/external_benchmark_manifest.json \
-            external/asysd results/asysd \
+            external/asysd_utf8 results/asysd \
             --role held_out_test --allow-held-out
       - name: Create publication-oriented statistical summary
         run: metaevidence summarize-removal-results results/asysd results/asysd/statistical_summary
@@ -252,6 +254,7 @@ jobs:
           }, indent=2))
           PY
           cp external/asysd/external_source_manifest.json results/asysd/provenance/
+          cp external/asysd_utf8/encoding_normalization_manifest.json results/asysd/provenance/
       - name: Write cryptographic validation-run manifest
         run: |
           metaevidence write-validation-run-manifest \

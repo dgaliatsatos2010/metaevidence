@@ -1,10 +1,10 @@
 {
   "schema_version": "MetaEvidence-frozen-validation-lock-1",
-  "validation_runner_version": "0.9.9.dev0",
+  "validation_runner_version": "0.9.10.dev0",
   "frozen_engine_version": "0.9.4.dev0",
   "engine_reference_release": "0.9.8.dev0",
   "created_for_external_execution": "2026-09-07",
-  "policy": "External validation must abort before scoring if any locked method file or benchmark manifest differs. No feature, weight, threshold, blocking, retention, label, or held-out-role tuning is permitted from external outcomes.",
+  "policy": "External validation must abort before scoring if any locked method file or benchmark manifest differs. No feature, weight, threshold, blocking, retention, label, or held-out-role tuning is permitted from external outcomes. Text-encoding normalization may only transcode source bytes losslessly and must not parse labels or modify method semantics.",
   "locked_method_files": [
     {
       "path": "src/metaevidence/dedup.py",
@@ -53,12 +53,12 @@
     {
       "path": "pyproject.toml",
       "role": "Validation runner package metadata/version",
-      "sha256": "53f87c97aa1f419b1ddf56844969025dbacf949c8994fc36eb2db0082ea3b359"
+      "sha256": "1a84d332dda085c0974d9d793336059ed64aa07b8ec843f422ed67680e6becbe"
     },
     {
       "path": "src/metaevidence/__init__.py",
       "role": "Public package version and exports",
-      "sha256": "825c715a63aa3f527ddb0f9bca6ddf24b0d1a574ad0532239cd12788cf0e111a"
+      "sha256": "a5fffc0b0facc8740c161c7c0ddb438d983ca00f77bdc66132aed0f8d3b36b03"
     },
     {
       "path": "src/metaevidence/cli.py",
@@ -93,7 +93,12 @@
     {
       "path": ".github/workflows/external-validation.yml",
       "role": "Manual GitHub Actions external-validation workflow",
-      "sha256": "37893baf1a5b620e0144d1d4ad69474762271367aa56a27ed51aa9a059fbb58b"
+      "sha256": "ee8b97f23072fb05a0aa08f1b328f515ff00681f5210d2e72cbac040303152fd"
+    },
+    {
+      "path": "benchmarks/normalize_asysd_encoding.py",
+      "role": "ASySD lossless text-encoding normalization without label parsing",
+      "sha256": "bb28cb9f2aaa8708de036080644fcb1272aad0084f182f601ae574ead52b9fa7"
     }
   ]
 }

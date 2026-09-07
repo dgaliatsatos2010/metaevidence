@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "metaevidence"
-version = "0.9.9.dev0"
+version = "0.9.10.dev0"
 description = "Reproducible cross-database scholarly evidence retrieval for systematic reviews and meta-analysis."
 readme = "README.md"
 requires-python = ">=3.10"
