@@ -1,104 +1,104 @@
 {
-  "schema_version": "MetaEvidence-frozen-validation-lock-1",
-  "validation_runner_version": "0.9.10.dev0",
-  "frozen_engine_version": "0.9.4.dev0",
-  "engine_reference_release": "0.9.8.dev0",
-  "created_for_external_execution": "2026-09-07",
-  "policy": "External validation must abort before scoring if any locked method file or benchmark manifest differs. No feature, weight, threshold, blocking, retention, label, or held-out-role tuning is permitted from external outcomes. Text-encoding normalization may only transcode source bytes losslessly and must not parse labels or modify method semantics.",
-  "locked_method_files": [
-    {
-      "path": "src/metaevidence/dedup.py",
-      "role": "Frozen publication-deduplication decision engine",
-      "sha256": "3dfe93fb3b1a495a6e26ddca8ab0ab4b0f64bac047de3de07d1d5f1f893dca50"
-    },
-    {
-      "path": "src/metaevidence/models.py",
-      "role": "EvidenceRecord data model consumed by the engine",
-      "sha256": "6da41721ed7111beb0dd9ff29961b54b91b69f24a2a12a3a68712e53df7ab6cd"
-    },
-    {
-      "path": "src/metaevidence/endnote_gold.py",
-      "role": "Beller EndNote gold parser and label mapping",
-      "sha256": "0a41e707f1303d1d042c40d848e91eb1ac746b4c718243137e481345e9c48c26"
-    },
-    {
-      "path": "src/metaevidence/external_validation.py",
-      "role": "Blind external benchmark evaluation and retention semantics",
-      "sha256": "fd12a4c92acfb28173e5bdcfe4ba4e5fa550cea3e1579bd036741cba33957d71"
-    },
-    {
-      "path": "src/metaevidence/external_runner.py",
-      "role": "Frozen ASySD role-gated external execution semantics",
-      "sha256": "3b13b80c40f0b05bdee01367860c68c162cfca2f40fc0040085e7f6086d83a9c"
-    },
-    {
-      "path": "src/metaevidence/asysd_compat.py",
-      "role": "Published ASySD TP/TN/FN/FP metric contract",
-      "sha256": "12e15e9d80226a94cc8f0ac7afd478a30439bf254ccd5ef4ce39293ed9a94b34"
-    }
-  ],
-  "locked_benchmark_manifests": [
-    {
-      "path": "benchmarks/beller_endnote_manifest.json",
-      "role": "Pinned Beller/IEBH public benchmark provenance",
-      "sha256": "7c65b0a7002fa3cfddf45b46d86f4a093b9bcfafe27720d2131f84709c87efa2"
-    },
-    {
-      "path": "benchmarks/external_benchmark_manifest.json",
-      "role": "Frozen ASySD roles, retention semantics and held-out policy",
-      "sha256": "580508baa0573f0fa782d5cf7176326659c5a9c11ae1d66e8a04adbc6692af5b"
-    }
-  ],
-  "locked_runner_files": [
-    {
-      "path": "pyproject.toml",
-      "role": "Validation runner package metadata/version",
-      "sha256": "1a84d332dda085c0974d9d793336059ed64aa07b8ec843f422ed67680e6becbe"
-    },
-    {
-      "path": "src/metaevidence/__init__.py",
-      "role": "Public package version and exports",
-      "sha256": "a5fffc0b0facc8740c161c7c0ddb438d983ca00f77bdc66132aed0f8d3b36b03"
-    },
-    {
-      "path": "src/metaevidence/cli.py",
-      "role": "External-validation CLI dispatch",
-      "sha256": "7fae979df076447db257d33b8d75430b59a3c3f3e355492f7e5d0aea9e08a981"
-    },
-    {
-      "path": "src/metaevidence/external_sources.py",
-      "role": "Pinned external-source download/integrity implementation",
-      "sha256": "76540936f6699225579ab615b54908c26ee9c5f09405463abe79b763fb6d61ac"
-    },
-    {
-      "path": "src/metaevidence/statistical_reporting.py",
-      "role": "Publication-oriented downstream statistical reporting",
-      "sha256": "6d156e82dee45698463ecbaeabed9783df71709d7b62a42e0d28bd45d876190b"
-    },
-    {
-      "path": "src/metaevidence/validation_lock.py",
-      "role": "Pre-execution frozen-lock verifier",
-      "sha256": "01a70c7b3cdb4c283b1ba9aa6d93941480f654308ac6cee9b2bef9e00e4cd97a"
-    },
-    {
-      "path": "src/metaevidence/validation_provenance.py",
-      "role": "Post-execution result provenance writer",
-      "sha256": "e54755bc699e8bff0d98265dbc808ae7794e2e2b217cc6e7f68d001536960b5b"
-    },
-    {
-      "path": "benchmarks/verify_frozen_validation.py",
-      "role": "Pre-install repository integrity gate",
-      "sha256": "49e74aef78f2f9301860f740b400b1265188d7f3ab390a997fe7f9f0bd851ae2"
-    },
-    {
-      "path": ".github/workflows/external-validation.yml",
-      "role": "Manual GitHub Actions external-validation workflow",
-      "sha256": "ee8b97f23072fb05a0aa08f1b328f515ff00681f5210d2e72cbac040303152fd"
-    },
-    {
-      "path": "benchmarks/normalize_asysd_encoding.py",
-      "role": "ASySD lossless text-encoding normalization without label parsing",
-      "sha256": "bb28cb9f2aaa8708de036080644fcb1272aad0084f182f601ae574ead52b9fa7"
-    }
-  ]
+    "schema_version":  "MetaEvidence-frozen-validation-lock-1",
+    "validation_runner_version":  "0.9.11.dev0",
+    "frozen_engine_version":  "0.9.4.dev0",
+    "engine_reference_release":  "0.9.8.dev0",
+    "created_for_external_execution":  "2026-09-07",
+    "policy":  "External validation must abort before scoring if any locked method file or benchmark manifest differs. No feature, weight, threshold, blocking, retention, label, or held-out-role tuning is permitted from external outcomes. Text-encoding normalization may only transcode source bytes losslessly and must not parse labels or modify method semantics. Source-defined integrity metadata may be corrected only through an explicit documented amendment when an external source is internally inconsistent and the correction is resolved from source/distributed-data evidence before scoring the affected corpus.",
+    "locked_method_files":  [
+                                {
+                                    "path":  "src/metaevidence/dedup.py",
+                                    "role":  "Frozen publication-deduplication decision engine",
+                                    "sha256":  "3dfe93fb3b1a495a6e26ddca8ab0ab4b0f64bac047de3de07d1d5f1f893dca50"
+                                },
+                                {
+                                    "path":  "src/metaevidence/models.py",
+                                    "role":  "EvidenceRecord data model consumed by the engine",
+                                    "sha256":  "6da41721ed7111beb0dd9ff29961b54b91b69f24a2a12a3a68712e53df7ab6cd"
+                                },
+                                {
+                                    "path":  "src/metaevidence/endnote_gold.py",
+                                    "role":  "Beller EndNote gold parser and label mapping",
+                                    "sha256":  "0a41e707f1303d1d042c40d848e91eb1ac746b4c718243137e481345e9c48c26"
+                                },
+                                {
+                                    "path":  "src/metaevidence/external_validation.py",
+                                    "role":  "Blind external benchmark evaluation and retention semantics",
+                                    "sha256":  "fd12a4c92acfb28173e5bdcfe4ba4e5fa550cea3e1579bd036741cba33957d71"
+                                },
+                                {
+                                    "path":  "src/metaevidence/external_runner.py",
+                                    "role":  "Frozen ASySD role-gated external execution semantics",
+                                    "sha256":  "3b13b80c40f0b05bdee01367860c68c162cfca2f40fc0040085e7f6086d83a9c"
+                                },
+                                {
+                                    "path":  "src/metaevidence/asysd_compat.py",
+                                    "role":  "Published ASySD TP/TN/FN/FP metric contract",
+                                    "sha256":  "12e15e9d80226a94cc8f0ac7afd478a30439bf254ccd5ef4ce39293ed9a94b34"
+                                }
+                            ],
+    "locked_benchmark_manifests":  [
+                                       {
+                                           "path":  "benchmarks/beller_endnote_manifest.json",
+                                           "role":  "Pinned Beller/IEBH public benchmark provenance",
+                                           "sha256":  "7c65b0a7002fa3cfddf45b46d86f4a093b9bcfafe27720d2131f84709c87efa2"
+                                       },
+                                       {
+                                           "path":  "benchmarks/external_benchmark_manifest.json",
+                                           "role":  "Frozen ASySD roles, retention semantics and held-out policy",
+                                           "sha256":  "fa865f50a40b2676fb72b4f23d8591eb0779ac52638a3ce3cd454887983c4a3c"
+                                       }
+                                   ],
+    "locked_runner_files":  [
+                                {
+                                    "path":  "pyproject.toml",
+                                    "role":  "Validation runner package metadata/version",
+                                    "sha256":  "195e7b9383ded1a56358381230251d5e9286ec81b6fdb96366a5e9386034f13f"
+                                },
+                                {
+                                    "path":  "src/metaevidence/__init__.py",
+                                    "role":  "Public package version and exports",
+                                    "sha256":  "34d766b6e477b35e1e6b5153c72347b7ccc820d32761d64ed6ed9cb593251d33"
+                                },
+                                {
+                                    "path":  "src/metaevidence/cli.py",
+                                    "role":  "External-validation CLI dispatch",
+                                    "sha256":  "7fae979df076447db257d33b8d75430b59a3c3f3e355492f7e5d0aea9e08a981"
+                                },
+                                {
+                                    "path":  "src/metaevidence/external_sources.py",
+                                    "role":  "Pinned external-source download/integrity implementation",
+                                    "sha256":  "76540936f6699225579ab615b54908c26ee9c5f09405463abe79b763fb6d61ac"
+                                },
+                                {
+                                    "path":  "src/metaevidence/statistical_reporting.py",
+                                    "role":  "Publication-oriented downstream statistical reporting",
+                                    "sha256":  "6d156e82dee45698463ecbaeabed9783df71709d7b62a42e0d28bd45d876190b"
+                                },
+                                {
+                                    "path":  "src/metaevidence/validation_lock.py",
+                                    "role":  "Pre-execution frozen-lock verifier",
+                                    "sha256":  "01a70c7b3cdb4c283b1ba9aa6d93941480f654308ac6cee9b2bef9e00e4cd97a"
+                                },
+                                {
+                                    "path":  "src/metaevidence/validation_provenance.py",
+                                    "role":  "Post-execution result provenance writer",
+                                    "sha256":  "e54755bc699e8bff0d98265dbc808ae7794e2e2b217cc6e7f68d001536960b5b"
+                                },
+                                {
+                                    "path":  "benchmarks/verify_frozen_validation.py",
+                                    "role":  "Pre-install repository integrity gate",
+                                    "sha256":  "49e74aef78f2f9301860f740b400b1265188d7f3ab390a997fe7f9f0bd851ae2"
+                                },
+                                {
+                                    "path":  ".github/workflows/external-validation.yml",
+                                    "role":  "Manual GitHub Actions external-validation workflow",
+                                    "sha256":  "ee8b97f23072fb05a0aa08f1b328f515ff00681f5210d2e72cbac040303152fd"
+                                },
+                                {
+                                    "path":  "benchmarks/normalize_asysd_encoding.py",
+                                    "role":  "ASySD lossless text-encoding normalization without label parsing",
+                                    "sha256":  "bb28cb9f2aaa8708de036080644fcb1272aad0084f182f601ae574ead52b9fa7"
+                                }
+                            ]
 }
