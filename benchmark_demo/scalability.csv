@@ -1,0 +1,4 @@
+task,n_records,replicate,elapsed_seconds,records_per_second,candidate_pairs,assessed_pairs,output_groups,used_exhaustive_pairing
+deduplication,50,0,0.19065415499972005,262.2549715744376,1225,1225,50,True
+deduplication,200,0,2.458032767000077,81.36588034344692,19900,19900,200,True
+deduplication,2100,0,0.18320690099972126,11462.450314593745,574,574,2100,False

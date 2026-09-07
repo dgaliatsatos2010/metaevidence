@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "benchmark_id": "beller_endnote_secondary_external",
+  "role": "secondary_external_no_tuning",
+  "task": "publication_deduplication_record_removal",
+  "gold_semantics": "EndNote caption='Duplicate' is positive/removable; blank caption is retained/negative",
+  "repository": "IEBH/dedupe-sweep",
+  "commit": "66a7ed5f5ea95cafc5f76ba6ec60bb4eb3cd381a",
+  "repository_path": "test/data",
+  "engine_threshold_policy": "frozen MetaEvidence defaults; no tuning on these corpora",
+  "primary_retention_mode": "engine_quality_blind_to_gold",
+  "files": [
+    {"name":"blue-light.xml","git_blob_sha":"3519573f712c7e39ec6996fe9baf5863706ae369","size_bytes":5750648},
+    {"name":"copper.xml","git_blob_sha":"b0989ffeaae69a1f83e590acec00d8f2b64a62e5","size_bytes":3636797},
+    {"name":"diabetes.xml","git_blob_sha":"a1e3d4895859b08f99dfe4499ea012ee42ce4487","size_bytes":50566737},
+    {"name":"tafenoquine.xml","git_blob_sha":"b4e83e63ce40089150f4ab0c0eedd0c0f7c4551d","size_bytes":1292166},
+    {"name":"uti.xml","git_blob_sha":"b32281245621546bbc135da25bb7ca4d8486ef64","size_bytes":7065172}
+  ],
+  "data_redistributed_with_package": false
+}

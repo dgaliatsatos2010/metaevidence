@@ -1,0 +1,270 @@
+name: External validation
+
+# Manual-only by design. Gold-standard outcomes must never run implicitly on a
+# push/PR because the ASySD held-out sets are protected from accidental peeking.
+on:
+  workflow_dispatch:
+    inputs:
+      benchmark:
+        description: External benchmark to execute
+        required: true
+        type: choice
+        default: beller-secondary
+        options:
+          - beller-secondary
+          - asysd-development-calibration
+          - asysd-held-out
+      beller_dataset:
+        description: Pinned EndNote dataset filename from the frozen manifest, or all
+        required: true
+        type: string
+        default: all
+      confirm_held_out:
+        description: I explicitly authorize opening the frozen ASySD held-out test outcomes
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: external-validation-${{ github.repository }}-${{ github.ref }}-${{ inputs.benchmark }}
+  cancel-in-progress: false
+
+jobs:
+  guard:
+    name: Validate benchmark gate
+    runs-on: ubuntu-latest
+    outputs:
+      beller_matrix: ${{ steps.matrix.outputs.value }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Refuse accidental held-out execution
+        shell: bash
+        env:
+          BENCHMARK: ${{ inputs.benchmark }}
+          CONFIRM_HELD_OUT: ${{ inputs.confirm_held_out }}
+        run: |
+          if [[ "$BENCHMARK" == "asysd-held-out" && "$CONFIRM_HELD_OUT" != "true" ]]; then
+            echo "::error::Held-out ASySD validation requires confirm_held_out=true."
+            exit 64
+          fi
+      - name: Verify frozen method and benchmark lock before execution
+        run: python benchmarks/verify_frozen_validation.py --lock benchmarks/frozen_validation_lock.json --repository-root .
+      - id: matrix
+        name: Build pinned EndNote matrix directly from frozen manifest
+        shell: bash
+        env:
+          DATASET: ${{ inputs.beller_dataset }}
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          from pathlib import Path
+          manifest = json.loads(Path("benchmarks/beller_endnote_manifest.json").read_text(encoding="utf-8"))
+          all_files = [str(item["name"]) for item in manifest["files"]]
+          selected = os.environ["DATASET"].strip()
+          if selected == "all":
+              files = all_files
+          elif selected in all_files:
+              files = [selected]
+          else:
+              raise SystemExit(
+                  f"Unknown beller_dataset={selected!r}; allowed: all, " + ", ".join(all_files)
+              )
+          print("value=" + json.dumps({"dataset": files}, separators=(",", ":")))
+          PY
+
+  beller:
+    name: Beller / ${{ matrix.dataset }}
+    needs: guard
+    if: ${{ inputs.benchmark == 'beller-secondary' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.guard.outputs.beller_matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Re-verify frozen validation lock in execution job
+        run: python benchmarks/verify_frozen_validation.py --lock benchmarks/frozen_validation_lock.json --repository-root .
+      - name: Install frozen MetaEvidence checkout
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install .
+      - name: Fetch one pinned public XML corpus
+        run: |
+          metaevidence fetch-beller-endnote external/beller --file "${{ matrix.dataset }}"
+      - name: Run blind external validation
+        run: |
+          metaevidence validate-beller-endnote \
+            external/beller \
+            "results/beller/${{ matrix.dataset }}" \
+            --file "${{ matrix.dataset }}"
+      - name: Record runner provenance
+        shell: bash
+        run: |
+          mkdir -p "results/beller/${{ matrix.dataset }}/provenance"
+          git rev-parse HEAD > "results/beller/${{ matrix.dataset }}/provenance/metaevidence_git_commit.txt"
+          python - <<'PY' > "results/beller/${{ matrix.dataset }}/provenance/runtime.json"
+          import json, platform, sys
+          import metaevidence
+          print(json.dumps({
+              "metaevidence_version": metaevidence.__version__,
+              "python": sys.version,
+              "platform": platform.platform(),
+          }, indent=2))
+          PY
+          cp external/beller/external_source_manifest.json \
+             "results/beller/${{ matrix.dataset }}/provenance/external_source_manifest.json"
+      - name: Write cryptographic validation-run manifest
+        run: |
+          metaevidence write-validation-run-manifest \
+            "results/beller/${{ matrix.dataset }}/provenance/validation_run_manifest.json" \
+            "results/beller/${{ matrix.dataset }}" \
+            --lock benchmarks/frozen_validation_lock.json \
+            --repository-root . \
+            --benchmark beller-secondary \
+            --selection "${{ matrix.dataset }}"
+      - name: Upload results only (never raw third-party XML)
+        uses: actions/upload-artifact@v4
+        with:
+          name: beller-${{ matrix.dataset }}-results
+          path: results/beller/${{ matrix.dataset }}/
+          if-no-files-found: error
+          retention-days: 90
+
+  beller-summary:
+    name: Aggregate Beller results
+    needs: [guard, beller]
+    if: ${{ always() && inputs.benchmark == 'beller-secondary' && needs.beller.result == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Re-verify frozen validation lock in reporting job
+        run: python benchmarks/verify_frozen_validation.py --lock benchmarks/frozen_validation_lock.json --repository-root .
+      - name: Install MetaEvidence reporting layer
+        run: python -m pip install .
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: beller-*-results
+          path: downloaded
+      - name: Create machine-readable aggregate
+        shell: bash
+        run: |
+          python - <<'PY'
+          import csv, json
+          from pathlib import Path
+          rows = []
+          for path in sorted(Path("downloaded").rglob("beller_endnote_validation_summary.json")):
+              payload = json.loads(path.read_text(encoding="utf-8"))
+              rows.extend(payload)
+          if not rows:
+              raise SystemExit("No Beller result summaries found")
+          out = Path("aggregate")
+          out.mkdir()
+          (out / "beller_external_validation_summary.json").write_text(
+              json.dumps(rows, indent=2, ensure_ascii=False), encoding="utf-8"
+          )
+          fields = sorted({key for row in rows for key in row})
+          with (out / "beller_external_validation_summary.csv").open("w", newline="", encoding="utf-8") as handle:
+              writer = csv.DictWriter(handle, fieldnames=fields)
+              writer.writeheader()
+              writer.writerows(rows)
+          PY
+      - name: Create publication-oriented statistical summary
+        run: metaevidence summarize-removal-results downloaded aggregate/statistical_summary
+      - name: Publish validation summary to workflow page
+        shell: bash
+        run: |
+          {
+            echo "# MetaEvidence external validation"
+            echo
+            echo "Frozen validation lock: verified before benchmark execution."
+            echo
+            cat aggregate/statistical_summary/manuscript_deduplication_summary.md
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: beller-external-validation-summary
+          path: aggregate/
+          if-no-files-found: error
+          retention-days: 90
+
+  asysd:
+    name: ASySD / ${{ inputs.benchmark }}
+    needs: guard
+    if: ${{ startsWith(inputs.benchmark, 'asysd-') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Re-verify frozen validation lock in execution job
+        run: python benchmarks/verify_frozen_validation.py --lock benchmarks/frozen_validation_lock.json --repository-root .
+      - name: Install frozen MetaEvidence checkout
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install .
+      - name: Fetch official ASySD files from OSF
+        run: metaevidence fetch-asysd external/asysd
+      - name: Run development + calibration roles
+        if: ${{ inputs.benchmark == 'asysd-development-calibration' }}
+        run: |
+          metaevidence validate-asysd \
+            benchmarks/external_benchmark_manifest.json \
+            external/asysd results/asysd \
+            --role development --role calibration
+      - name: Run explicitly unlocked held-out roles
+        if: ${{ inputs.benchmark == 'asysd-held-out' && inputs.confirm_held_out }}
+        run: |
+          metaevidence validate-asysd \
+            benchmarks/external_benchmark_manifest.json \
+            external/asysd results/asysd \
+            --role held_out_test --allow-held-out
+      - name: Create publication-oriented statistical summary
+        run: metaevidence summarize-removal-results results/asysd results/asysd/statistical_summary
+      - name: Record runner provenance
+        shell: bash
+        run: |
+          mkdir -p results/asysd/provenance
+          git rev-parse HEAD > results/asysd/provenance/metaevidence_git_commit.txt
+          python - <<'PY' > results/asysd/provenance/runtime.json
+          import json, platform, sys
+          import metaevidence
+          print(json.dumps({
+              "metaevidence_version": metaevidence.__version__,
+              "python": sys.version,
+              "platform": platform.platform(),
+          }, indent=2))
+          PY
+          cp external/asysd/external_source_manifest.json results/asysd/provenance/
+      - name: Write cryptographic validation-run manifest
+        run: |
+          metaevidence write-validation-run-manifest \
+            results/asysd/provenance/validation_run_manifest.json \
+            results/asysd \
+            --lock benchmarks/frozen_validation_lock.json \
+            --repository-root . \
+            --benchmark "${{ inputs.benchmark }}" \
+            --selection "${{ inputs.benchmark }}"
+      - name: Upload results only (never raw third-party CSVs)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.benchmark }}-results
+          path: results/asysd/
+          if-no-files-found: error
+          retention-days: 90

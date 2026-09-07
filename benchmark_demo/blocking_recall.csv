@@ -1,0 +1,2 @@
+task,n_records,gold_positive_pairs,candidate_pairs,positive_pairs_retrieved,blocking_recall,pair_reduction_fraction,used_exhaustive_pairing
+deduplication,53,23,107,23,1.0,0.9223512336719883,False

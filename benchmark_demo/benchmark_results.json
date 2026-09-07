@@ -1,0 +1,242 @@
+{
+  "name": "metaevidence-v0.8-synthetic-demo",
+  "notes": [
+    "Synthetic QA results must not be used for scientific accuracy claims.",
+    "The 2100-record case intentionally crosses the default exhaustive-pairing boundary."
+  ],
+  "query_translation": [
+    {
+      "case_id": "synthetic-query-demo",
+      "source": "pubmed",
+      "metrics": {
+        "reference_count": 4,
+        "candidate_count": 4,
+        "intersection_count": 3,
+        "precision": 0.75,
+        "recall": 0.75,
+        "f1": 0.75,
+        "jaccard": 0.6,
+        "relative_count_error": 0.0
+      },
+      "fidelity_score": 0.9,
+      "loss_score": 0.1,
+      "requires_review": false,
+      "canonical_query": "(\"machine learning\" OR AI) AND diabetes",
+      "expert_query": "synthetic expert reference",
+      "generated_query": "synthetic MetaEvidence translation"
+    }
+  ],
+  "dedup_ablation": [
+    {
+      "task": "deduplication",
+      "ablated_feature": "<none>",
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "review_fraction": 0.0,
+      "brier_score": 1.4143743334571034e-09
+    },
+    {
+      "task": "deduplication",
+      "ablated_feature": "doi_exact",
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "review_fraction": 0.0,
+      "brier_score": 1.43931095339789e-09
+    },
+    {
+      "task": "deduplication",
+      "ablated_feature": "title_similarity",
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "review_fraction": 0.0,
+      "brier_score": 2.517126162426486e-11
+    },
+    {
+      "task": "deduplication",
+      "ablated_feature": "author_similarity",
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "review_fraction": 0.0,
+      "brier_score": 8.102619393098696e-10
+    }
+  ],
+  "study_ablation": [
+    {
+      "task": "study_linkage",
+      "ablated_feature": "<none>",
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "review_fraction": 0.0,
+      "brier_score": 7.437007330707017e-07
+    },
+    {
+      "task": "study_linkage",
+      "ablated_feature": "registry_exact",
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "review_fraction": 0.0,
+      "brier_score": 2.0768492419215252e-06
+    },
+    {
+      "task": "study_linkage",
+      "ablated_feature": "author_similarity",
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "review_fraction": 0.0,
+      "brier_score": 4.881928244212435e-07
+    },
+    {
+      "task": "study_linkage",
+      "ablated_feature": "intervention_similarity",
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "review_fraction": 0.0,
+      "brier_score": 8.42251880121459e-08
+    }
+  ],
+  "blocking_recall": [
+    {
+      "task": "deduplication",
+      "n_records": 53,
+      "gold_positive_pairs": 23,
+      "candidate_pairs": 107,
+      "positive_pairs_retrieved": 23,
+      "blocking_recall": 1.0,
+      "pair_reduction_fraction": 0.9223512336719883,
+      "used_exhaustive_pairing": false
+    }
+  ],
+  "metadata_stress": [
+    {
+      "task": "deduplication",
+      "missing_rate": 0,
+      "replicate": 0,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "review_fraction": 0.0,
+      "brier_score": 1.4143743334571034e-09
+    },
+    {
+      "task": "deduplication",
+      "missing_rate": 0,
+      "replicate": 1,
+      "sensitivity": 1.0,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "review_fraction": 0.0,
+      "brier_score": 1.4143743334571034e-09
+    },
+    {
+      "task": "deduplication",
+      "missing_rate": 0.25,
+      "replicate": 0,
+      "sensitivity": 0.6521739130434783,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 0.7894736842105263,
+      "false_positive_rate": 0.0,
+      "review_fraction": 0.043478260869565216,
+      "brier_score": 0.058265136040853927
+    },
+    {
+      "task": "deduplication",
+      "missing_rate": 0.25,
+      "replicate": 1,
+      "sensitivity": 0.7391304347826086,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 0.85,
+      "false_positive_rate": 0.0,
+      "review_fraction": 0.021739130434782608,
+      "brier_score": 0.02904449033278878
+    },
+    {
+      "task": "deduplication",
+      "missing_rate": 0.5,
+      "replicate": 0,
+      "sensitivity": 0.4782608695652174,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 0.6470588235294118,
+      "false_positive_rate": 0.0,
+      "review_fraction": 0.0,
+      "brier_score": 0.0884536024272754
+    },
+    {
+      "task": "deduplication",
+      "missing_rate": 0.5,
+      "replicate": 1,
+      "sensitivity": 0.34782608695652173,
+      "specificity": 1.0,
+      "precision": 1.0,
+      "f1": 0.5161290322580645,
+      "false_positive_rate": 0.0,
+      "review_fraction": 0.010869565217391304,
+      "brier_score": 0.10308347213381448
+    }
+  ],
+  "scalability": [
+    {
+      "task": "deduplication",
+      "n_records": 50,
+      "replicate": 0,
+      "elapsed_seconds": 0.19065415499972005,
+      "records_per_second": 262.2549715744376,
+      "candidate_pairs": 1225,
+      "assessed_pairs": 1225,
+      "output_groups": 50,
+      "used_exhaustive_pairing": true
+    },
+    {
+      "task": "deduplication",
+      "n_records": 200,
+      "replicate": 0,
+      "elapsed_seconds": 2.458032767000077,
+      "records_per_second": 81.36588034344692,
+      "candidate_pairs": 19900,
+      "assessed_pairs": 19900,
+      "output_groups": 200,
+      "used_exhaustive_pairing": true
+    },
+    {
+      "task": "deduplication",
+      "n_records": 2100,
+      "replicate": 0,
+      "elapsed_seconds": 0.18320690099972126,
+      "records_per_second": 11462.450314593745,
+      "candidate_pairs": 574,
+      "assessed_pairs": 574,
+      "output_groups": 2100,
+      "used_exhaustive_pairing": false
+    }
+  ]
+}

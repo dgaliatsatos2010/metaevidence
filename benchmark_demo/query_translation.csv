@@ -1,0 +1,2 @@
+case_id,source,fidelity_score,loss_score,requires_review,canonical_query,expert_query,generated_query,retrieval_reference_count,retrieval_candidate_count,retrieval_intersection_count,retrieval_precision,retrieval_recall,retrieval_f1,retrieval_jaccard,retrieval_relative_count_error
+synthetic-query-demo,pubmed,0.9,0.1,False,"(""machine learning"" OR AI) AND diabetes",synthetic expert reference,synthetic MetaEvidence translation,4,4,3,0.75,0.75,0.75,0.6,0.0

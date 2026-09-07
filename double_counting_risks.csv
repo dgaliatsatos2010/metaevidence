@@ -1,0 +1,2 @@
+study_id,member_indices,severity,reason
+STUDY-11F7394FC86F,1;2,HIGH,Multiple distinct outcome-bearing reports are linked to one underlying study; do not count them as independent studies without outcome/timepoint/report adjudication.

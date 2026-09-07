@@ -1,0 +1,39 @@
+name: Publish to PyPI
+
+# Release-preparation workflow. It will publish only after a maintainer explicitly
+# creates a GitHub release and configures the protected `pypi` environment for
+# PyPI Trusted Publishing. Do not enable before external-validation/release gates pass.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install --upgrade pip build
+      - run: python -m build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: python-package-dist
+          path: dist/*
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: python-package-dist
+          path: dist
+      - uses: pypa/gh-action-pypi-publish@release/v1

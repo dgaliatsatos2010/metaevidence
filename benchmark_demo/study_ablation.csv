@@ -1,0 +1,5 @@
+task,ablated_feature,sensitivity,specificity,precision,f1,false_positive_rate,review_fraction,brier_score
+study_linkage,<none>,1.0,1.0,1.0,1.0,0.0,0.0,7.437007330707017e-07
+study_linkage,registry_exact,1.0,1.0,1.0,1.0,0.0,0.0,2.0768492419215252e-06
+study_linkage,author_similarity,1.0,1.0,1.0,1.0,0.0,0.0,4.881928244212435e-07
+study_linkage,intervention_similarity,1.0,1.0,1.0,1.0,0.0,0.0,8.42251880121459e-08

@@ -1,0 +1,9 @@
+tool,input_records,duplicates_removed,records_remaining,removed_singulars,missed_duplicates,time_minutes,source
+ASySD,26778,7248,19530,22,34,53,"Bateup et al. 2026, Research Synthesis Methods, doi:10.1017/rsm.2026.10100"
+Covidence,26778,6985,19793,8,276,32,"Bateup et al. 2026, Research Synthesis Methods, doi:10.1017/rsm.2026.10100"
+Deduklick,26778,7189,19589,11,81,14,"Bateup et al. 2026, Research Synthesis Methods, doi:10.1017/rsm.2026.10100"
+EPPI-Reviewer,26778,7209,19569,20,74,63,"Bateup et al. 2026, Research Synthesis Methods, doi:10.1017/rsm.2026.10100"
+PICO Portal,26778,7129,19649,16,136,307,"Bateup et al. 2026, Research Synthesis Methods, doi:10.1017/rsm.2026.10100"
+Rayyan,26778,7222,19556,2,40,1234,"Bateup et al. 2026, Research Synthesis Methods, doi:10.1017/rsm.2026.10100"
+SRA Deduplicator: Focused,26778,7191,19587,9,81,178,"Bateup et al. 2026, Research Synthesis Methods, doi:10.1017/rsm.2026.10100"
+SRA Deduplicator: Relaxed,26778,6976,19802,11,280,1,"Bateup et al. 2026, Research Synthesis Methods, doi:10.1017/rsm.2026.10100"

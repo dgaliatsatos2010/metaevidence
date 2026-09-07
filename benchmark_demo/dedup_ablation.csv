@@ -1,0 +1,5 @@
+task,ablated_feature,sensitivity,specificity,precision,f1,false_positive_rate,review_fraction,brier_score
+deduplication,<none>,1.0,1.0,1.0,1.0,0.0,0.0,1.4143743334571034e-09
+deduplication,doi_exact,1.0,1.0,1.0,1.0,0.0,0.0,1.43931095339789e-09
+deduplication,title_similarity,1.0,1.0,1.0,1.0,0.0,0.0,2.517126162426486e-11
+deduplication,author_similarity,1.0,1.0,1.0,1.0,0.0,0.0,8.102619393098696e-10

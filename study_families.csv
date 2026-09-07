@@ -1,0 +1,2 @@
+study_id,member_indices,registry_ids,publication_roles,sources,confidence
+STUDY-11F7394FC86F,0;1;2,NCT:01234567,0:PROTOCOL;1:PRIMARY_RESULTS;2:FOLLOW_UP,crossref;openalex;pubmed,0.998000

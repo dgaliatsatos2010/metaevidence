@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use MetaEvidence in research, please cite the software release and the accompanying methodological paper when available."
+title: "MetaEvidence"
+type: software
+version: "0.9.9.dev0"
+authors:
+  - family-names: "Galiatsatos"
+    given-names: "Dimitrios"
+    affiliation: "Hellenic Open University"
+    orcid: "https://orcid.org/0009-0005-5232-1425"
+license: MIT
+abstract: >-
+  A reproducible cross-database evidence-retrieval framework for systematic
+  reviews and meta-analysis, with query translation, provenance-preserving
+  deduplication, study-level publication linkage, screening interoperability,
+  PRISMA-oriented reporting, and scientific benchmark infrastructure.
+keywords:
+  - systematic review
+  - meta-analysis
+  - evidence synthesis
+  - literature search
+  - deduplication
+  - PRISMA

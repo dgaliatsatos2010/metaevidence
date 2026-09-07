@@ -1,0 +1,177 @@
+{
+  "schema_version": "2.0",
+  "package_version": "0.9.7.dev0",
+  "status": "roles_and_retention_semantics_frozen_before_external_execution",
+  "frozen_on": "2026-09-06",
+  "primary_safety_endpoint": "removed_singulars",
+  "primary_duplicate_detection_endpoint": "missed_duplicates",
+  "tuning_policy": {
+    "unit_of_split": "whole_dataset",
+    "random_pair_splitting": false,
+    "development": "Feature/threshold engineering may use development datasets only.",
+    "calibration": "Probability/threshold calibration may use calibration datasets only after development choices are frozen.",
+    "held_out_test": "No threshold, feature, blocking or calibration changes may be informed by held-out outcomes.",
+    "independent_benchmark_2": "All Bateup 2026 Cochrane sets remain untouched until the ASySD development/calibration/test workflow is frozen."
+  },
+  "datasets": [
+    {
+      "id": "asysd_diabetes",
+      "task": "publication_deduplication",
+      "filename": "Diabetes_duplicates_labelled.csv",
+      "expected_records": 1845,
+      "expected_gold_duplicates_removed": 1261,
+      "expected_gold_publications": 584,
+      "original_human_duplicates_removed": 896,
+      "source": "Hair et al., BMC Biology 2023; OSF project c9evs / validation component 2b8uq",
+      "role": "development",
+      "notes": "Consensus gold-standard count is used, not the original human-removal count from Table 3. Gold is a representative-sensitive removal label, not a duplicate-group partition.",
+      "gold_standard_type": "removal_label",
+      "gold_label_semantics": {
+        "retained": "Unique",
+        "removed": "Duplicate"
+      }
+    },
+    {
+      "id": "asysd_neuroimaging",
+      "task": "publication_deduplication",
+      "filename": "NeuroImaging_duplicates_labelled.csv",
+      "expected_records": 3434,
+      "expected_gold_duplicates_removed": 1298,
+      "expected_gold_publications": 2136,
+      "original_human_duplicates_removed": 1280,
+      "source": "Hair et al., BMC Biology 2023; OSF project c9evs / validation component 2b8uq",
+      "role": "development",
+      "notes": "The final Results section reports N=3434 and 1298 consensus duplicate citations; the earlier source-description table reports 3438 search returns. Integrity checks therefore use the final evaluated corpus counts. Gold is a representative-sensitive removal label, not a duplicate-group partition.",
+      "gold_standard_type": "removal_label",
+      "gold_label_semantics": {
+        "retained": "Unique",
+        "removed": "Duplicate"
+      }
+    },
+    {
+      "id": "asysd_cardiac",
+      "task": "publication_deduplication",
+      "filename": "Cardiac_duplicates_labelled.csv",
+      "expected_records": 8948,
+      "expected_gold_duplicates_removed": 3530,
+      "expected_gold_publications": 5418,
+      "original_human_duplicates_removed": 3153,
+      "source": "Hair et al., BMC Biology 2023; OSF project c9evs / validation component 2b8uq",
+      "role": "calibration",
+      "notes": "Threshold/calibration fitting is permitted only after development choices are frozen. Gold is a representative-sensitive removal label, not a duplicate-group partition.",
+      "gold_standard_type": "removal_label",
+      "gold_label_semantics": {
+        "retained": "Unique",
+        "removed": "Duplicate"
+      }
+    },
+    {
+      "id": "asysd_depression",
+      "task": "publication_deduplication",
+      "filename": "Depression_duplicates_labelled.csv",
+      "expected_records": 79880,
+      "expected_gold_duplicates_removed": 10135,
+      "expected_gold_publications": 69745,
+      "original_human_duplicates_removed": 9418,
+      "source": "Hair et al., BMC Biology 2023; OSF project c9evs / validation component 2b8uq",
+      "role": "held_out_test",
+      "notes": "Do not inspect MetaEvidence outcome metrics before thresholds/calibration are locked. Gold is a representative-sensitive removal label, not a duplicate-group partition.",
+      "gold_standard_type": "removal_label",
+      "gold_label_semantics": {
+        "retained": "Unique",
+        "removed": "Duplicate"
+      }
+    },
+    {
+      "id": "asysd_srsr",
+      "task": "publication_deduplication",
+      "filename": "SRSR_duplicates_labelled.csv",
+      "expected_records": 53001,
+      "expected_gold_duplicates_removed": 16855,
+      "expected_gold_publications": 36146,
+      "original_human_duplicates_removed": 16778,
+      "source": "Hair et al., BMC Biology 2023; OSF project c9evs / validation component 2b8uq",
+      "role": "held_out_test",
+      "notes": "Do not inspect MetaEvidence outcome metrics before thresholds/calibration are locked. Gold is a representative-sensitive removal label, not a duplicate-group partition.",
+      "gold_standard_type": "removal_label",
+      "gold_label_semantics": {
+        "retained": "Unique",
+        "removed": "Duplicate"
+      }
+    },
+    {
+      "id": "bateup_2026_arora",
+      "task": "publication_deduplication",
+      "expected_records": 3299,
+      "expected_gold_duplicates_removed": 533,
+      "expected_gold_publications": 2766,
+      "source": "Bateup et al., Research Synthesis Methods 2026; OSF xu3tj",
+      "role": "independent_benchmark_2",
+      "gold_standard_type": "partition_group"
+    },
+    {
+      "id": "bateup_2026_cox",
+      "task": "publication_deduplication",
+      "expected_records": 5258,
+      "expected_gold_duplicates_removed": 397,
+      "expected_gold_publications": 4861,
+      "source": "Bateup et al., Research Synthesis Methods 2026; OSF xu3tj",
+      "role": "independent_benchmark_2",
+      "gold_standard_type": "partition_group"
+    },
+    {
+      "id": "bateup_2026_freak_poli",
+      "task": "publication_deduplication",
+      "expected_records": 12432,
+      "expected_gold_duplicates_removed": 5145,
+      "expected_gold_publications": 7287,
+      "source": "Bateup et al., Research Synthesis Methods 2026; OSF xu3tj",
+      "role": "independent_benchmark_2",
+      "gold_standard_type": "partition_group"
+    },
+    {
+      "id": "bateup_2026_noone",
+      "task": "publication_deduplication",
+      "expected_records": 3265,
+      "expected_gold_duplicates_removed": 397,
+      "expected_gold_publications": 2868,
+      "source": "Bateup et al., Research Synthesis Methods 2026; OSF xu3tj",
+      "role": "independent_benchmark_2",
+      "gold_standard_type": "partition_group"
+    },
+    {
+      "id": "bateup_2026_pisano",
+      "task": "publication_deduplication",
+      "expected_records": 2524,
+      "expected_gold_duplicates_removed": 775,
+      "expected_gold_publications": 1749,
+      "source": "Bateup et al., Research Synthesis Methods 2026; OSF xu3tj",
+      "role": "independent_benchmark_2",
+      "gold_standard_type": "partition_group"
+    },
+    {
+      "id": "expert_query_translation_panel",
+      "task": "query_translation",
+      "source": "Prospectively curated published review strategies with expert target-database translations",
+      "role": "prospective_benchmark",
+      "primary_metric": "eligible_study_recall"
+    },
+    {
+      "id": "adjudicated_study_families",
+      "task": "study_linkage",
+      "source": "Prospective manual adjudication using registry/publication evidence",
+      "role": "prospective_benchmark",
+      "primary_metric": "precision_constrained_recall"
+    }
+  ],
+  "published_comparison_note": "The Bateup 2026 article narrative contains a 22,778-record typo in one paragraph; the five dataset counts and Table 3 sum to 26,778, which is used for published baseline comparisons.",
+  "removal_label_evaluation_policy": {
+    "primary": "blind_engine_quality_retention",
+    "secondary_reproduction": "gold_preferred_retention_to_mirror_ASySD_keep_label_Unique",
+    "secondary_reproduction_uses_gold_labels": true,
+    "partition_secondary": "run_only_if_verified_group_column_is_present_and_integrity_checks_pass"
+  },
+  "deduplication_engine_frozen_from_version": "0.9.4.dev0",
+  "deduplication_engine_sha256": "3dfe93fb3b1a495a6e26ddca8ab0ab4b0f64bac047de3de07d1d5f1f893dca50",
+  "validation_runner_note": "v0.9.7 adds manual GitHub Actions execution/provenance only; the frozen deduplication engine file remains the v0.9.4-dev engine identified by deduplication_engine_sha256."
+}

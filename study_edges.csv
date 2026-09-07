@@ -1,0 +1,4 @@
+left_index,right_index,study_probability,publication_probability,decision,left_registry_ids,right_registry_ids,left_role,right_role,rules
+0,1,0.9999619536237137,0.018720912705294676,SAME_STUDY,NCT:01234567,NCT:01234567,PROTOCOL,PRIMARY_RESULTS,Shared trial-registry identifier(s): NCT:01234567 | Shared study acronym(s): ABC
+0,2,0.998,0.0029821587547768373,SAME_STUDY,NCT:01234567,NCT:01234567,PROTOCOL,FOLLOW_UP,Shared trial-registry identifier(s): NCT:01234567
+1,2,0.998,0.012083069214714316,SAME_STUDY,NCT:01234567,NCT:01234567,PRIMARY_RESULTS,FOLLOW_UP,Shared trial-registry identifier(s): NCT:01234567

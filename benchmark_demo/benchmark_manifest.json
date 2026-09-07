@@ -1,0 +1,34 @@
+{
+  "bundle_name": "metaevidence-v0.8-synthetic-demo",
+  "files": {
+    "benchmark_results.json": {
+      "sha256": "67040eb93e0c27d8bb77c50ab42402c8b5fac22d39ee5292d2a51d86ab6a9905",
+      "bytes": 6413
+    },
+    "blocking_recall.csv": {
+      "sha256": "792138a9e7c293d288430c3b20aa70ec6295d676e1c332c98a187aa39f479d5e",
+      "bytes": 198
+    },
+    "dedup_ablation.csv": {
+      "sha256": "2b1e6467de8b5f70178e5ca65fc0ce161512b9d9601da460b8670da453d3360b",
+      "bytes": 403
+    },
+    "metadata_stress.csv": {
+      "sha256": "6a085d2914216a4ac26bcd7ad85a41b141fa32638ccac42781aa5578969cb187",
+      "bytes": 666
+    },
+    "query_translation.csv": {
+      "sha256": "6d2a6f52d2c995906e01257174833235cdf6d824c68db38b4eeab057e21539d7",
+      "bytes": 461
+    },
+    "scalability.csv": {
+      "sha256": "9cb25ddc75b2c51824d34baeb91e8158bbae904f9d31dd690d64b3b5291ca448",
+      "bytes": 364
+    },
+    "study_ablation.csv": {
+      "sha256": "2408826ff68b09d098195cf4ee203713a8afdd854f88b78a347645fabbea07cd",
+      "bytes": 415
+    }
+  },
+  "important": "Synthetic/unit-test benchmark results are engineering QA only; external gold-standard validation is required for scientific performance claims."
+}
