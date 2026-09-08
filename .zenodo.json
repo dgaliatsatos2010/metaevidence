@@ -1,0 +1,33 @@
+{
+  "title": "MetaEvidence v1.0.0: reproducible cross-database evidence retrieval and externally validated bibliographic deduplication",
+  "description": "MetaEvidence is an open-source Python framework for systematic reviews and meta-analysis. It supports source-neutral query representation, cross-database retrieval adapters, provenance-preserving bibliographic deduplication, study-level publication linkage, screening interoperability, PRISMA-oriented reporting, reproducibility manifests, and locked external-validation workflows. Version 1.0.0 preserves the externally validated publication-deduplication engine (SHA-256 3dfe93fb3b1a495a6e26ddca8ab0ab4b0f64bac047de3de07d1d5f1f893dca50) and includes results-only validation evidence without redistributing third-party benchmark data.",
+  "creators": [
+    {
+      "name": "Galiatsatos, Dimitrios",
+      "affiliation": "Hellenic Open University, Patras, Greece",
+      "orcid": "0009-0005-5232-1425"
+    }
+  ],
+  "license": {
+    "id": "MIT"
+  },
+  "keywords": [
+    "systematic review",
+    "meta-analysis",
+    "evidence synthesis",
+    "literature search",
+    "deduplication",
+    "PRISMA",
+    "reproducibility",
+    "Python"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/dgaliatsatos2010/metaevidence",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ],
+  "version": "1.0.0",
+  "upload_type": "software"
+}
