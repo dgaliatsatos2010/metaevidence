@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use MetaEvidence in research, please cite the software release and the accompanying methodological paper when available."
 title: "MetaEvidence"
 type: software
-version: "0.9.9.dev0"
+version: "1.0.0"
 authors:
   - family-names: "Galiatsatos"
     given-names: "Dimitrios"
