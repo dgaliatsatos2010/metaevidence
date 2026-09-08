@@ -383,4 +383,4 @@ from .validation_lock import (
     verify_frozen_validation_lock,
 )
 
-__version__ = "0.9.11.dev0"
+__version__ = "1.0.0"
