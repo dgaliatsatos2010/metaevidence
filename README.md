@@ -3,6 +3,20 @@
 **Status:** v1.0.0 stable public release
 
 MetaEvidence is an open-source Python framework for reproducible, cross-database scholarly evidence retrieval for systematic reviews and meta-analysis.
+[![PyPI version](https://img.shields.io/pypi/v/metaevidence.svg)](https://pypi.org/project/metaevidence/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22656076.svg)](https://doi.org/10.5281/zenodo.22656076)
+
+## Availability
+
+- GitHub: https://github.com/dgaliatsatos2010/metaevidence
+- PyPI: https://pypi.org/project/metaevidence/
+- Zenodo DOI: https://doi.org/10.5281/zenodo.22656076
+
+Install the stable release with:
+
+```bash
+pip install metaevidence
+```
 
 ## Core design principle
 
