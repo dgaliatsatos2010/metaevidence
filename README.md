@@ -1,8 +1,8 @@
 # MetaEvidence
 
-**Status:** research prototype / v0.9.9-dev
+**Status:** v1.0.0 stable public release
 
-MetaEvidence is a Python framework under development for reproducible, cross-database scholarly evidence retrieval for systematic reviews and meta-analysis.
+MetaEvidence is an open-source Python framework for reproducible, cross-database scholarly evidence retrieval for systematic reviews and meta-analysis.
 
 ## Core design principle
 

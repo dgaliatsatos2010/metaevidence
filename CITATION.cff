@@ -3,6 +3,7 @@ message: "If you use MetaEvidence in research, please cite the software release 
 title: "MetaEvidence"
 type: software
 version: "1.0.0"
+date-released: "2026-09-08"
 authors:
   - family-names: "Galiatsatos"
     given-names: "Dimitrios"
