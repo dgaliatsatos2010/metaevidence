@@ -1,10 +1,10 @@
 {
     "schema_version":  "MetaEvidence-frozen-validation-lock-1",
-    "validation_runner_version":  "1.0.0",
+    "validation_runner_version":  "0.9.11.dev0",
     "frozen_engine_version":  "0.9.4.dev0",
     "engine_reference_release":  "0.9.8.dev0",
     "created_for_external_execution":  "2026-09-07",
-    "policy":  "External validation must abort before scoring if any locked method file or benchmark manifest differs. No feature, weight, threshold, blocking, retention, label, or held-out-role tuning is permitted from external outcomes. Text-encoding normalization may only transcode source bytes losslessly and must not parse labels or modify method semantics. Source-defined integrity metadata may be corrected only through an explicit documented amendment when an external source is internally inconsistent and the correction is resolved from source/distributed-data evidence before scoring the affected corpus. The v1.0.0 archival release changes package/release metadata only; the externally validated decision engine and benchmark semantics remain unchanged.",
+    "policy":  "External validation must abort before scoring if any locked method file or benchmark manifest differs. No feature, weight, threshold, blocking, retention, label, or held-out-role tuning is permitted from external outcomes. Text-encoding normalization may only transcode source bytes losslessly and must not parse labels or modify method semantics. Source-defined integrity metadata may be corrected only through an explicit documented amendment when an external source is internally inconsistent and the correction is resolved from source/distributed-data evidence before scoring the affected corpus.",
     "locked_method_files":  [
                                 {
                                     "path":  "src/metaevidence/dedup.py",
@@ -53,12 +53,12 @@
                                 {
                                     "path":  "pyproject.toml",
                                     "role":  "Validation runner package metadata/version",
-                                    "sha256":  "e478e4b817edb9e73081b5ae3c888444dbfcd1820ad3b4140f0b0a00fb6dfc67"
+                                    "sha256":  "195e7b9383ded1a56358381230251d5e9286ec81b6fdb96366a5e9386034f13f"
                                 },
                                 {
                                     "path":  "src/metaevidence/__init__.py",
                                     "role":  "Public package version and exports",
-                                    "sha256":  "adfeda2ebab028bfd304b5fa623526b7c3e72f9329b808da0dd85a491fdd3cc7"
+                                    "sha256":  "34d766b6e477b35e1e6b5153c72347b7ccc820d32761d64ed6ed9cb593251d33"
                                 },
                                 {
                                     "path":  "src/metaevidence/cli.py",
